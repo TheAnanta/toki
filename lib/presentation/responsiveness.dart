@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Responsiveness {
   static late BuildContext context;
-  init(BuildContext rContext) {
+  static init(BuildContext rContext) {
     context = rContext;
   }
 }
