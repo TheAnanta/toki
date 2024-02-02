@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            TokiTextButton(label: label, onPressed: onPressed),
+            TokiTextButton(label: 'Text', onPressed: () {}),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
