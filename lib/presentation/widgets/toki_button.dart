@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:toki/presentation/responsiveness.dart';
 
@@ -28,8 +30,20 @@ class TokiButton extends StatelessWidget {
   }
 }
 
+class TokiElevatedButton extends StatelessWidget {
+  const TokiElevatedButton({super.key});
 
-
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Column(
+          children: [],
+        )
+      ],
+    );
+  }
+}
 
 // class TokiTextButton extends StatelessWidget {
 //   final Function() onPressed;
