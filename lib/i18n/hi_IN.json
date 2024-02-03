@@ -1,8 +1,8 @@
 {
-    "login": "Login",
-    "start": "Start",
-    "next": "Next",
-    "choose-your-character": "Choose your\nCharacter",
+    "login": "लॉग इन",
+    "start": "प्रारंभ करें",
+    "next": "आगे बढ़ें",
+    "choose-your-character": "अपना दोस्त चुनें",
     "choose-your-native language": "Choose your\nNative Language",
     "choose-your-motivation": "Choose your\nMotivation",
     "choose-your-academic-level": "Choose your\nAcademic Level",
@@ -28,3 +28,4 @@
     "otp": "OTP",
     "continue": "Continue"
 }
+
