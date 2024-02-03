@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:toki/presentation/responsiveness.dart';
+import 'package:toki/utils/linear_gradient_extension.dart';
 
 class TokiButton extends StatelessWidget {
   final Function() onPressed;
@@ -20,27 +21,16 @@ class TokiButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: child,
+      padding: EdgeInsets.symmetric(
+        horizontal: getResponsiveWidth(32),
+        vertical: getResponsiveHeight(18),
+      ),
       decoration: BoxDecoration(
         gradient: gradient,
         borderRadius: isFullWidth
             ? BorderRadius.circular(getResponsiveWidth(36))
             : BorderRadius.zero,
       ),
-    );
-  }
-}
-
-class TokiElevatedButton extends StatelessWidget {
-  const TokiElevatedButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
-          children: [],
-        )
-      ],
     );
   }
 }
