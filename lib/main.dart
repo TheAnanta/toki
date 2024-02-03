@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 import 'package:toki/presentation/pages/onboarding_page.dart';
 import 'package:toki/presentation/pages/splash_page.dart';
@@ -14,11 +15,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LocalJsonLocalization.delegate.directories = ['lib/i18n'];
     return MaterialApp(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('hi', 'IN'),
+        Locale("te", "IN"),
+        Locale("kn", "IN"),
+        Locale("ta", "IN"),
+        Locale("sa", "IN"),
+        Locale("ml", "IN"),
+      ],
       localizationsDelegates: [
         // delegate from localization package.
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         //json-file
         LocalJsonLocalization.delegate,
       ],
+      locale: Locale("hi", "IN"),
       title: 'Flutter Demo',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

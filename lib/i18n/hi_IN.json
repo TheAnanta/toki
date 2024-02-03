@@ -2,7 +2,7 @@
     "login": "लॉग इन",
     "start": "प्रारंभ करें",
     "next": "आगे बढ़ें",
-    "choose-your-character": "अपना दोस्त चुनें",
+    "choose-your-character": "अपना\nदोस्त चुनें",
     "choose-your-native language": "अपनी मूल भाषा चुनें ",
     "choose-your-motivation": "अपना प्रेरणा चुनें",
     "choose-your-academic-level": "अपना शैक्षणिक स्तर चुनें",
@@ -28,4 +28,3 @@
     "otp": "ओटीपी",
     "continue": "जारी रखें"
 }
-
