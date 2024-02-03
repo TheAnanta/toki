@@ -7,12 +7,15 @@ class TokiElevatedButton extends StatefulWidget {
   final LinearGradient shadowGradient;
   final String label;
   final Color labelColor;
-  const TokiElevatedButton(
-      {super.key,
-      required this.gradient,
-      required this.shadowGradient,
-      this.label = "Button",
-      this.labelColor = Colors.white});
+  final Function() onPressed;
+  const TokiElevatedButton({
+    super.key,
+    required this.gradient,
+    required this.shadowGradient,
+    this.label = "Button",
+    this.labelColor = Colors.white,
+    required this.onPressed,
+  });
 
   @override
   State<TokiElevatedButton> createState() => _TokiElevatedButtonState();
@@ -22,6 +25,7 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
+  late CurvedAnimation _curvedAnimation;
   @override
   void initState() {
     super.initState();
@@ -29,7 +33,7 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
       duration: const Duration(milliseconds: 150),
       vsync: this,
     );
-    final _curvedAnimation =
+    _curvedAnimation =
         CurvedAnimation(parent: _controller, curve: Curves.easeOut)
           ..addListener(() {
             setState(() {});
@@ -48,8 +52,10 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
     return GestureDetector(
       onTap: () {
         _controller.forward();
-        Future.delayed(Duration(milliseconds: 150), () {
-          _controller.reverse();
+        Future.delayed(const Duration(milliseconds: 150), () {
+          _controller.reverse().then((value) {
+            widget.onPressed();
+          });
         });
       },
       child: Stack(

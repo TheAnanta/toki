@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
+import 'package:toki/presentation/pages/onboarding_page.dart';
 import 'package:toki/presentation/pages/splash_page.dart';
 
 void main() {
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashPage(),
+        "/onboarding": (context) => const OnboardingPage(),
+        "/login": (context) => const Placeholder(),
         '/home': (context) => const MyHomePage(title: 'Toki'),
       },
     );
