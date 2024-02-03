@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         //json-file
         LocalJsonLocalization.delegate,
       ],
-      locale: Locale("hi", "IN"),
+      // locale: Locale("kn", "IN"),
       title: 'Flutter Demo',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

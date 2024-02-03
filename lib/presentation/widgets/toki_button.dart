@@ -20,47 +20,51 @@ class TokiButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: child,
-      padding: EdgeInsets.symmetric(
-        horizontal: getResponsiveWidth(32),
-        vertical: getResponsiveHeight(18),
-      ),
       decoration: BoxDecoration(
         gradient: gradient,
         borderRadius: isFullWidth
             ? BorderRadius.circular(getResponsiveWidth(36))
             : BorderRadius.zero,
       ),
+      child: child,
     );
   }
 }
 
-// class TokiTextButton extends StatelessWidget {
-//   final Function() onPressed;
-//   final String label;
-//   const TokiTextButton({
-//     super.key,
-//     required this.label,
-//     required this.onPressed,
-//   });
+class TokiTextButton extends StatelessWidget {
+  final Function() onPressed;
+  final String label;
+  final LinearGradient gradient;
+  const TokiTextButton({
+    super.key,
+    required this.label,
+    required this.onPressed,
+    required this.gradient,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return TokiButton(
-//       onPressed: onPressed,
-//       child: Text(label),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return TokiButton(
+      onPressed: onPressed,
+      child: Text(label),
+      gradient: gradient,
+    );
+  }
+}
 
-// class TokiIconButton extends StatelessWidget {
-//   final Function() onPressed;
-//   final IconData icon;
-//   const TokiIconButton(
-//       {super.key, required this.icon, required this.onPressed});
+class TokiIconButton extends StatelessWidget {
+  final Function() onPressed;
+  final IconData icon;
+  final LinearGradient gradient;
+  const TokiIconButton(
+      {super.key,
+      required this.icon,
+      required this.onPressed,
+      required this.gradient});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return TokiButton(onPressed: onPressed, child: Icon(icon));
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return TokiButton(
+        onPressed: onPressed, child: Icon(icon), gradient: gradient);
+  }
+}

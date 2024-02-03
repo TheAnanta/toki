@@ -88,7 +88,9 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
                   widget.label,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: widget.labelColor,
-                        fontSize: getResponsiveHeight(24),
+                        fontSize: widget.label.length > 8
+                            ? getResponsiveHeight(12)
+                            : getResponsiveHeight(24),
                         fontWeight: FontWeight.w700,
                       ),
                 )),

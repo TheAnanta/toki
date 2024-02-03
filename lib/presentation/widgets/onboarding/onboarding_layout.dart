@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:toki/presentation/responsiveness.dart';
+import 'package:toki/presentation/widgets/toki_button.dart';
 
 class OnboardingLayout extends StatelessWidget {
-  const OnboardingLayout({super.key});
+  final bool isFirstPage;
+  const OnboardingLayout({super.key, this.isFirstPage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +29,43 @@ class OnboardingLayout extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: getResponsiveHeight(56),
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: getResponsiveHeight(56),
+                ),
+                Text(
+                  "choose-your-character".i18n().split("\n")[0],
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF97B0CF),
+                        fontSize: getResponsiveHeight(14),
+                        fontWeight: FontWeight.w500,
+                      ),
+                ),
+                Text(
+                  "choose-your-character".i18n().split("\n")[1].toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF33A1FF),
+                        fontSize: getResponsiveHeight(20),
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: getResponsiveWidth(-0.05),
+                      ),
+                ),
+                const Spacer(),
+                TokiTextButton(
+                  label: "Next",
+                  onPressed: () {},
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFF1CCBFA),
+                      Color(0xFF519FFA),
+                    ],
                   ),
-                  Text(
-                    "choose-your-character".i18n().split("\n")[0],
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: const Color(0xFF97B0CF),
-                          fontSize: getResponsiveHeight(14),
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                  Text(
-                    "choose-your-character".i18n().split("\n")[1].toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: const Color(0xFF33A1FF),
-                          fontSize: getResponsiveHeight(20),
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: getResponsiveWidth(-0.05),
-                        ),
-                  ),
-                ]),
+                ),
+              ],
+            ),
           ),
         ],
       ),
