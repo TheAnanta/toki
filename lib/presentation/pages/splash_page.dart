@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
+import 'package:toki/presentation/pages/responsiveness_page_wrapper.dart';
 import 'package:toki/presentation/responsiveness.dart';
 import 'package:toki/presentation/widgets/onboarding/character_group.dart';
 import 'package:toki/presentation/widgets/toki_elevated_button.dart';
@@ -10,36 +11,41 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Responsiveness.init(context);
-    return Scaffold(
-      body: Stack(children: [
-        //
-        Image.asset(
-          'assets/images/bg.png',
-          fit: BoxFit.cover,
-          height: double.infinity,
-          alignment: const Alignment(0.38, 0.5),
-        ),
+    return ResponsivePageWrapper(
+      child: LayoutBuilder(builder: (context, constraints) {
+        Responsiveness.init(
+            context, constraints.maxWidth, constraints.maxHeight);
+        return Scaffold(
+          body: Stack(children: [
+            //
+            Image.asset(
+              'assets/images/bg.png',
+              fit: BoxFit.cover,
+              height: double.infinity,
+              alignment: const Alignment(0.38, 0.5),
+            ),
 
-        SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SvgPicture.asset('assets/icons/tokilogo.svg'),
-              const CharacterGroup(),
-              SplashPageCTA(
-                onLogin: () {
-                  Navigator.pushNamed(context, '/login');
-                },
-                onStart: () {
-                  Navigator.pushNamed(context, '/onboarding');
-                },
+            SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SvgPicture.asset('assets/icons/tokilogo.svg'),
+                  const CharacterGroup(),
+                  SplashPageCTA(
+                    onLogin: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    onStart: () {
+                      Navigator.pushNamed(context, '/onboarding');
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ]),
+            ),
+          ]),
+        );
+      }),
     );
   }
 }

@@ -2,32 +2,35 @@ import 'package:flutter/material.dart';
 
 class Responsiveness {
   static late BuildContext context;
-  static init(BuildContext rContext) {
+  static late double width;
+  static late double height;
+  static init(BuildContext rContext, double rWidth, double rHeight) {
     context = rContext;
+    width = rWidth;
+    height = rHeight;
   }
 }
 
 bool isSmallScreen() {
-  return MediaQuery.of(Responsiveness.context).size.width < 600;
+  return Responsiveness.width < 600;
 }
 
 bool isMediumScreen() {
-  return MediaQuery.of(Responsiveness.context).size.width >= 600 &&
-      MediaQuery.of(Responsiveness.context).size.width < 840;
+  return Responsiveness.width >= 600 && Responsiveness.width < 840;
 }
 
 bool isLargeScreen() {
-  return MediaQuery.of(Responsiveness.context).size.width >= 840;
+  return Responsiveness.width >= 840;
 }
 
 bool isExtraLargeScreen() {
-  return MediaQuery.of(Responsiveness.context).size.width >= 1200;
+  return Responsiveness.width >= 1200;
 }
 
 double getResponsiveWidth(double width) {
-  return (MediaQuery.of(Responsiveness.context).size.width * width) / 390;
+  return (Responsiveness.width * width) / 390;
 }
 
 double getResponsiveHeight(double height) {
-  return (MediaQuery.of(Responsiveness.context).size.height * height) / 844;
+  return (Responsiveness.height * height) / 844;
 }

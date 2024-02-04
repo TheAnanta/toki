@@ -229,7 +229,7 @@ class SelectionItemWidget extends StatelessWidget {
           height: getResponsiveHeight(size),
           width: getResponsiveHeight(size),
         ),
-        selected
+        selected && isSmallScreen()
             ? Positioned(
                 top: 0,
                 right: getResponsiveHeight(28),

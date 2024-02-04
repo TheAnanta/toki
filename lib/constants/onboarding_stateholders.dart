@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:localization/localization.dart';
 import 'package:toki/data/models/onboarding_page_stateholder.dart';
 import 'package:toki/presentation/responsiveness.dart';
@@ -9,24 +10,56 @@ List<OnboardingPageStateholder> onboardingStates = [
   OnboardingPageStateholder(
     primaryActionLabel: "choose-your-character",
     children: [
-      const Spacer(),
       Builder(builder: (context) {
+        var characters = ["beaver", "deer", "fox", "sloth", "rabbit"];
         int character = 3;
+        var pageController = PageController(initialPage: character);
         return StatefulBuilder(builder: (context, setCharacterState) {
-          return SelectionCarousel(
-            index: character,
-            itemCount: 8,
-            itemBuilder: (context, index) {
-              return Container(
-                color: Colors.red,
-              );
-            },
-            onItemSelected: (index) {
-              setCharacterState(() {
-                character = index;
-                print(index);
-              });
-            },
+          return Expanded(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: getResponsiveHeight(48),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemBuilder: (context, index) {
+                          return SvgPicture.asset(
+                              "assets/images/characters/${characters[index]}.svg");
+                        },
+                        itemCount: 5),
+                  ),
+                ),
+                SizedBox(
+                  height: getResponsiveHeight(48),
+                ),
+                SelectionCarousel(
+                  index: character,
+                  itemCount: 5,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      child: SvgPicture.asset(
+                        "assets/images/characters/${characters[index]}.svg",
+                        width: double.infinity,
+                        fit: BoxFit.fitWidth,
+                      ),
+                    );
+                  },
+                  onItemSelected: (index) {
+                    setCharacterState(() {
+                      character = index;
+                      pageController.animateToPage(character,
+                          curve: Curves.easeInOut,
+                          duration: Duration(milliseconds: 500));
+                      print(index);
+                    });
+                  },
+                ),
+              ],
+            ),
           );
         });
       }),
@@ -41,13 +74,29 @@ List<OnboardingPageStateholder> onboardingStates = [
       ),
       Builder(builder: (context) {
         int character = 3;
+        var languages = [
+          "Hindi",
+          "Sanskrit",
+          "Telugu",
+          "English",
+          "Kannada",
+          "Malayalam",
+        ];
         return StatefulBuilder(builder: (context, setCharacterState) {
           return SelectionCarousel(
             index: character,
-            itemCount: 8,
+            itemCount: 6,
             itemBuilder: (context, index) {
               return Container(
-                color: Colors.red,
+                color: Color(0xFF00B9FF),
+                child: Center(
+                    child: Text(
+                  languages[index],
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Colors.white),
+                )),
               );
             },
             onItemSelected: (index) {
@@ -87,7 +136,13 @@ List<OnboardingPageStateholder> onboardingStates = [
               ),
         );
       }),
-      const Spacer(),
+      Expanded(
+        child: Image.asset(
+          "assets/images/motivation.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
+      ),
     ],
     backgroundHeight: 563,
   ),
@@ -125,15 +180,31 @@ List<OnboardingPageStateholder> onboardingStates = [
         width: 300,
         labelSize: 20,
       ),
-      const Spacer(),
+      SizedBox(
+        height: getResponsiveHeight(64),
+      ),
+      Flexible(
+          child: PageView.builder(
+        itemBuilder: (context, index) {
+          return index <= 1
+              ? SvgPicture.asset(
+                  "assets/icons/${index == 0 ? "beginner" : "sophomore"}.svg")
+              : Image.asset(
+                  "assets/images/${index == 2 ? "junior" : "senior"}.png");
+        },
+        itemCount: 4,
+      )),
+      SizedBox(
+        height: getResponsiveHeight(64),
+      ),
     ],
     backgroundHeight: 563,
   ),
-  const OnboardingPageStateholder(
-    primaryActionLabel: "choose-your-goal",
-    children: [
-      Spacer(),
-    ],
-    backgroundHeight: 764,
-  ),
+  // const OnboardingPageStateholder(
+  //   primaryActionLabel: "choose-your-goal",
+  //   children: [
+  //     Spacer(),
+  //   ],
+  //   backgroundHeight: 764,
+  // ),
 ];
