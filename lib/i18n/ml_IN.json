@@ -3,7 +3,7 @@
     "start": "തുടങ്ങുക",
     "next": "തുടങ്ങുക",
     "choose-your-character": "നിങ്ങളുടെ കഥാപാത്രം തിരഞ്ഞെടുക്കുക",
-    "choose-your-native language": "നിങ്ങളുടെ മാതൃഭാഷ തിരഞ്ഞെടുക്കുക",
+    "choose-your-native-language": "നിങ്ങളുടെ മാതൃഭാഷ തിരഞ്ഞെടുക്കുക",
     "choose-your-motivation": "നിങ്ങളുടെ പ്രചോദനം തിരഞ്ഞെടുക്കുക",
     "choose-your-academic-level": "നിങ്ങളുടെ അക്കാദമിക നിലവാരം തിരഞ്ഞെടുക്കുക",
     "if-dont-know-your-level": "നിങ്ങൾ നിങ്ങളുടെ നിലവാരം അറിയില്ലെങ്കിൽ",
@@ -28,4 +28,3 @@
     "otp": "ഒടിപി",
     "continue": "തുടരുക"
 }
-

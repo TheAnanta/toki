@@ -63,6 +63,7 @@ class SplashPageCTA extends StatelessWidget {
           onPressed: () {
             onLogin();
           },
+          isVerticalGradient: true,
           gradient: const LinearGradient(
             colors: [
               Color(0xFFFFF278),

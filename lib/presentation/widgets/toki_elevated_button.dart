@@ -7,14 +7,20 @@ class TokiElevatedButton extends StatefulWidget {
   final LinearGradient shadowGradient;
   final String label;
   final Color labelColor;
+  final double? labelSize;
   final Function() onPressed;
+  final bool isVerticalGradient;
+  final double width;
   const TokiElevatedButton({
     super.key,
     required this.gradient,
     required this.shadowGradient,
+    this.width = 147,
     this.label = "Button",
     this.labelColor = Colors.white,
+    this.labelSize,
     required this.onPressed,
+    this.isVerticalGradient = false,
   });
 
   @override
@@ -62,7 +68,7 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
         clipBehavior: Clip.none,
         children: [
           Container(
-            width: getResponsiveWidth(147),
+            width: getResponsiveWidth(widget.width),
             height: getResponsiveHeight(65),
             decoration: BoxDecoration(
               gradient: widget.shadowGradient,
@@ -73,24 +79,28 @@ class _TokiElevatedButtonState extends State<TokiElevatedButton>
           ),
           Positioned(
               bottom: getResponsiveHeight(_animation.value),
-              width: getResponsiveWidth(147),
+              width: getResponsiveWidth(widget.width),
               height: getResponsiveHeight(65),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
                       getResponsiveHeight(20),
                     ),
-                    gradient: widget.gradient.copyWith(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter)),
+                    gradient: widget.isVerticalGradient
+                        ? widget.gradient.copyWith(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)
+                        : widget.gradient),
                 child: Center(
                     child: Text(
                   widget.label,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: widget.labelColor,
-                        fontSize: widget.label.length > 8
-                            ? getResponsiveHeight(12)
-                            : getResponsiveHeight(24),
+                        fontSize: widget.labelSize != null
+                            ? getResponsiveHeight(widget.labelSize!)
+                            : widget.label.length > 8
+                                ? getResponsiveHeight(12)
+                                : getResponsiveHeight(24),
                         fontWeight: FontWeight.w700,
                       ),
                 )),
