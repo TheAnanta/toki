@@ -192,12 +192,141 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
-        ),
+    return ResponsivePageWrapper(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          Responsiveness.init(
+              context, constraints.maxWidth, constraints.maxHeight);
+          return Scaffold(
+              body: SizedBox(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "What would you like to learn today",
+                ),
+                SizedBox(
+                  height: getResponsiveHeight(24),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return QuizScreen(
+                        isFrontEnd: true,
+                      );
+                    }));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xFFA7BF01), shape: BoxShape.circle),
+                    height: getResponsiveHeight(144),
+                    width: getResponsiveHeight(144),
+                    child: Center(child: Text("Frontend")),
+                  ),
+                ),
+                SizedBox(
+                  height: getResponsiveHeight(24),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return QuizScreen(
+                        isFrontEnd: false,
+                      );
+                    }));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color(0xFFBE8FFE), shape: BoxShape.circle),
+                    height: getResponsiveHeight(144),
+                    width: getResponsiveHeight(144),
+                    child: Center(child: Text("Backend")),
+                  ),
+                ),
+              ],
+            ),
+          ));
+        },
+      ),
+    );
+  }
+}
+
+class QuizScreen extends StatelessWidget {
+  final bool isFrontEnd;
+  const QuizScreen({super.key, required this.isFrontEnd});
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsivePageWrapper(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          Responsiveness.init(
+              context, constraints.maxWidth, constraints.maxHeight);
+          return Scaffold(
+              body: SizedBox(
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.favorite),
+                      Text("3"),
+                      Spacer(),
+                      Icon(Icons.star),
+                      Text("24"),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Text(isFrontEnd
+                      ? "Noah is styling his web page and wants to ensure consistent spacing between elements. Which CSS property should he use to define the space between the content and border of an element?"
+                      : "Alex is building a RESTful API for his web application to interact with the database. Which HTTP method is typically used for retrieving resource representations?"),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  TokiTextButton(
+                    label: isFrontEnd ? "A) Margin" : "A) POST",
+                    onPressed: () {},
+                    color: Colors.blue.shade500,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  TokiTextButton(
+                    label: isFrontEnd ? "B) Padding" : "B) GET",
+                    onPressed: () {},
+                    color: Colors.blue.shade500,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  TokiTextButton(
+                    label: isFrontEnd ? "C) Border" : "C) PUT",
+                    onPressed: () {},
+                    color: Colors.blue.shade500,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  TokiTextButton(
+                    label: isFrontEnd ? "D) Float" : "D) DELETE",
+                    onPressed: () {},
+                    color: Colors.blue.shade500,
+                  ),
+                ],
+              ),
+            ),
+          ));
+        },
       ),
     );
   }
